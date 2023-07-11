@@ -1,813 +1,107 @@
 const nftAbi = [
-  {
-    inputs: [
-      {
-        internalType: "string",
-        name: "_name",
-        type: "string",
-      },
-      {
-        internalType: "string",
-        name: "_symbol",
-        type: "string",
-      },
-      {
-        internalType: "string",
-        name: "_initBaseURI",
-        type: "string",
-      },
-      {
-        internalType: "string",
-        name: "_baseExtension",
-        type: "string",
-      },
-      {
-        internalType: "bool[]",
-        name: "_settings",
-        type: "bool[]",
-      },
-      {
-        internalType: "uint256",
-        name: "_price",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "_dropStart",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "_maxSupply",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "_reserve",
-        type: "uint256",
-      },
-      {
-        internalType: "address",
-        name: "_royaltiesAddress",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "_royaltiesFees",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "nonpayable",
-    type: "constructor",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "address",
-        name: "owner",
-        type: "address",
-      },
-      {
-        indexed: true,
-        internalType: "address",
-        name: "approved",
-        type: "address",
-      },
-      {
-        indexed: true,
-        internalType: "uint256",
-        name: "tokenId",
-        type: "uint256",
-      },
-    ],
-    name: "Approval",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "address",
-        name: "owner",
-        type: "address",
-      },
-      {
-        indexed: true,
-        internalType: "address",
-        name: "operator",
-        type: "address",
-      },
-      {
-        indexed: false,
-        internalType: "bool",
-        name: "approved",
-        type: "bool",
-      },
-    ],
-    name: "ApprovalForAll",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "address",
-        name: "previousOwner",
-        type: "address",
-      },
-      {
-        indexed: true,
-        internalType: "address",
-        name: "newOwner",
-        type: "address",
-      },
-    ],
-    name: "OwnershipTransferred",
-    type: "event",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "address",
-        name: "from",
-        type: "address",
-      },
-      {
-        indexed: true,
-        internalType: "address",
-        name: "to",
-        type: "address",
-      },
-      {
-        indexed: true,
-        internalType: "uint256",
-        name: "tokenId",
-        type: "uint256",
-      },
-    ],
-    name: "Transfer",
-    type: "event",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "to",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "tokenId",
-        type: "uint256",
-      },
-    ],
-    name: "approve",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "owner",
-        type: "address",
-      },
-    ],
-    name: "balanceOf",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "baseExtension",
-    outputs: [
-      {
-        internalType: "string",
-        name: "",
-        type: "string",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "tokenId",
-        type: "uint256",
-      },
-    ],
-    name: "burn",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "dropStart",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "tokenId",
-        type: "uint256",
-      },
-    ],
-    name: "getApproved",
-    outputs: [
-      {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "owner",
-        type: "address",
-      },
-      {
-        internalType: "address",
-        name: "operator",
-        type: "address",
-      },
-    ],
-    name: "isApprovedForAll",
-    outputs: [
-      {
-        internalType: "bool",
-        name: "",
-        type: "bool",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "isDrop",
-    outputs: [
-      {
-        internalType: "bool",
-        name: "",
-        type: "bool",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "isRevokable",
-    outputs: [
-      {
-        internalType: "bool",
-        name: "",
-        type: "bool",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "isSoulbound",
-    outputs: [
-      {
-        internalType: "bool",
-        name: "",
-        type: "bool",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "maxSupply",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "_user",
-        type: "address",
-      },
-      {
-        internalType: "uint16",
-        name: "_quantity",
-        type: "uint16",
-      },
-    ],
-    name: "mint",
-    outputs: [],
-    stateMutability: "payable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "name",
-    outputs: [
-      {
-        internalType: "string",
-        name: "",
-        type: "string",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "owner",
-    outputs: [
-      {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint16",
-        name: "_quantity",
-        type: "uint16",
-      },
-      {
-        internalType: "address",
-        name: "_receiver",
-        type: "address",
-      },
-    ],
-    name: "ownerMint",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "tokenId",
-        type: "uint256",
-      },
-    ],
-    name: "ownerOf",
-    outputs: [
-      {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "price",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "renounceOwnership",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "reserve",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "royaltiesAddress",
-    outputs: [
-      {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "royaltiesFees",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "value",
-        type: "uint256",
-      },
-    ],
-    name: "royaltyInfo",
-    outputs: [
-      {
-        internalType: "address",
-        name: "receiver",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "royaltyAmount",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "from",
-        type: "address",
-      },
-      {
-        internalType: "address",
-        name: "to",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "tokenId",
-        type: "uint256",
-      },
-    ],
-    name: "safeTransferFrom",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "from",
-        type: "address",
-      },
-      {
-        internalType: "address",
-        name: "to",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "tokenId",
-        type: "uint256",
-      },
-      {
-        internalType: "bytes",
-        name: "data",
-        type: "bytes",
-      },
-    ],
-    name: "safeTransferFrom",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "operator",
-        type: "address",
-      },
-      {
-        internalType: "bool",
-        name: "approved",
-        type: "bool",
-      },
-    ],
-    name: "setApprovalForAll",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "string",
-        name: "_newBaseExtension",
-        type: "string",
-      },
-    ],
-    name: "setBaseExtension",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "string",
-        name: "_newBaseURI",
-        type: "string",
-      },
-    ],
-    name: "setBaseURI",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_dropStart",
-        type: "uint256",
-      },
-    ],
-    name: "setDropStart",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_price",
-        type: "uint256",
-      },
-    ],
-    name: "setPrice",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "_royaltiesAddress",
-        type: "address",
-      },
-    ],
-    name: "setRoyaltiesAddress",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "_royaltiesFees",
-        type: "uint256",
-      },
-    ],
-    name: "setRoyaltiesFees",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "bytes4",
-        name: "interfaceId",
-        type: "bytes4",
-      },
-    ],
-    name: "supportsInterface",
-    outputs: [
-      {
-        internalType: "bool",
-        name: "",
-        type: "bool",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "symbol",
-    outputs: [
-      {
-        internalType: "string",
-        name: "",
-        type: "string",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "index",
-        type: "uint256",
-      },
-    ],
-    name: "tokenByIndex",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "owner",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "index",
-        type: "uint256",
-      },
-    ],
-    name: "tokenOfOwnerByIndex",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "tokenId",
-        type: "uint256",
-      },
-    ],
-    name: "tokenURI",
-    outputs: [
-      {
-        internalType: "string",
-        name: "",
-        type: "string",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "totalSupply",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "from",
-        type: "address",
-      },
-      {
-        internalType: "address",
-        name: "to",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "tokenId",
-        type: "uint256",
-      },
-    ],
-    name: "transferFrom",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "newOwner",
-        type: "address",
-      },
-    ],
-    name: "transferOwnership",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "_owner",
-        type: "address",
-      },
-    ],
-    name: "walletOfOwner",
-    outputs: [
-      {
-        internalType: "uint256[]",
-        name: "",
-        type: "uint256[]",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "withdraw",
-    outputs: [],
-    stateMutability: "payable",
-    type: "function",
-  },
-];
+  'constructor(string _name, string _symbol, string _initBaseURI, string _baseExtension, bool[] _settings, uint256 _dropStart, uint256 _reserve, tuple(address erc20TokenAddress, bool tokenUriIsEnumerable, address royaltyRecipient, uint16 royaltyPercentageBps, uint256 maxSupply, uint256 pricePerMint) _data)',
+  'error ERC721AddressZeroIsNotaValidOwner()',
+  'error ERC721ApprovalToCurrentOwner()',
+  'error ERC721ApproveCallerIsNotOwnerNorApprovedForAll()',
+  'error ERC721ApproveToCaller()',
+  'error ERC721InvalidTokenId()',
+  'error ERC721MintToTheZeroAddress()',
+  'error ERC721NotApprovedOrOwner()',
+  'error ERC721TokenAlreadyMinted()',
+  'error ERC721TransferFromIncorrectOwner()',
+  'error ERC721TransferToNonReceiverImplementer()',
+  'error ERC721TransferToTheZeroAddress()',
+  'error RMRKChildAlreadyExists()',
+  'error RMRKChildIndexOutOfRange()',
+  'error RMRKIdZeroForbidden()',
+  'error RMRKIsNotContract()',
+  'error RMRKLocked()',
+  'error RMRKMaxPendingChildrenReached()',
+  'error RMRKMaxRecursiveBurnsReached(address childContract, uint256 childId)',
+  'error RMRKMintOverMax()',
+  'error RMRKMintToNonRMRKNestableImplementer()',
+  'error RMRKMintUnderpriced()',
+  'error RMRKMintZero()',
+  'error RMRKNestableTooDeep()',
+  'error RMRKNestableTransferToDescendant()',
+  'error RMRKNestableTransferToNonRMRKNestableImplementer()',
+  'error RMRKNestableTransferToSelf()',
+  'error RMRKNewContributorIsZeroAddress()',
+  'error RMRKNewOwnerIsZeroAddress()',
+  'error RMRKNotApprovedOrDirectOwner()',
+  'error RMRKNotOwner()',
+  'error RMRKPendingChildIndexOutOfRange()',
+  'error RMRKRoyaltiesTooHigh()',
+  'error RMRKUnexpectedChildId()',
+  'error RMRKUnexpectedNumberOfChildren()',
+  'event AllChildrenRejected(uint256 indexed tokenId)',
+  'event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId)',
+  'event ApprovalForAll(address indexed owner, address indexed operator, bool approved)',
+  'event ChildAccepted(uint256 indexed tokenId, uint256 childIndex, address indexed childAddress, uint256 indexed childId)',
+  'event ChildProposed(uint256 indexed tokenId, uint256 childIndex, address indexed childAddress, uint256 indexed childId)',
+  'event ChildTransferred(uint256 indexed tokenId, uint256 childIndex, address indexed childAddress, uint256 indexed childId, bool fromPending, bool toZero)',
+  'event ContributorUpdate(address indexed contributor, bool isContributor)',
+  'event NestTransfer(address indexed from, address indexed to, uint256 fromTokenId, uint256 toTokenId, uint256 indexed tokenId)',
+  'event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)',
+  'event Transfer(address indexed from, address indexed to, uint256 indexed tokenId)',
+  'function VERSION() view returns (string)',
+  'function acceptChild(uint256 parentId, uint256 childIndex, address childAddress, uint256 childId)',
+  'function addChild(uint256 parentId, uint256 childId, bytes data)',
+  'function allTokens() view returns (uint256[])',
+  'function approve(address to, uint256 tokenId)',
+  'function balanceOf(address owner) view returns (uint256)',
+  'function baseExtension() view returns (string)',
+  'function burn(uint256 tokenId)',
+  'function burn(uint256 tokenId, uint256 maxChildrenBurns) returns (uint256)',
+  'function childIsInActive(address childAddress, uint256 childId) view returns (bool)',
+  'function childOf(uint256 parentId, uint256 index) view returns (tuple(uint256 tokenId, address contractAddress))',
+  'function childrenOf(uint256 parentId) view returns (tuple(uint256 tokenId, address contractAddress)[])',
+  'function collectionMetadata() view returns (string)',
+  'function directOwnerOf(uint256 tokenId) view returns (address, uint256, bool)',
+  'function dropStart() view returns (uint256)',
+  'function getApproved(uint256 tokenId) view returns (address)',
+  'function getLock() view returns (bool)',
+  'function getRoyaltyPercentage() view returns (uint256)',
+  'function getRoyaltyRecipient() view returns (address)',
+  'function isApprovedForAll(address owner, address operator) view returns (bool)',
+  'function isContributor(address contributor) view returns (bool)',
+  'function isDrop() view returns (bool)',
+  'function isRevokable() view returns (bool)',
+  'function isSoulbound() view returns (bool)',
+  'function manageContributor(address contributor, bool grantRole)',
+  'function maxSupply() view returns (uint256)',
+  'function mint(address to, uint256 numToMint) payable',
+  'function name() view returns (string)',
+  'function nestMint(address to, uint256 numToMint, uint256 destinationId) payable',
+  'function nestTransferFrom(address from, address to, uint256 tokenId, uint256 destinationId, bytes data)',
+  'function owner() view returns (address)',
+  'function ownerMint(address _receiver, uint16 _numToMint)',
+  'function ownerNestMint(address _receiver, uint16 _numToMint, uint256 destinationId)',
+  'function ownerOf(uint256 tokenId) view returns (address)',
+  'function pendingChildOf(uint256 parentId, uint256 index) view returns (tuple(uint256 tokenId, address contractAddress))',
+  'function pendingChildrenOf(uint256 parentId) view returns (tuple(uint256 tokenId, address contractAddress)[])',
+  'function pricePerMint() view returns (uint256)',
+  'function rejectAllChildren(uint256 tokenId, uint256 maxRejections)',
+  'function renounceOwnership()',
+  'function reserve() view returns (uint256)',
+  'function royaltyInfo(uint256 tokenId, uint256 salePrice) view returns (address receiver, uint256 royaltyAmount)',
+  'function safeTransferFrom(address from, address to, uint256 tokenId)',
+  'function safeTransferFrom(address from, address to, uint256 tokenId, bytes data)',
+  'function setApprovalForAll(address operator, bool approved)',
+  'function setBaseExtension(string _newBaseExtension)',
+  'function setBaseURI(string _newBaseURI)',
+  'function setDropStart(uint256 _dropStart)',
+  'function setLock()',
+  'function supportsInterface(bytes4 interfaceId) view returns (bool)',
+  'function symbol() view returns (string)',
+  'function tokenByIndex(uint256 index) view returns (uint256)',
+  'function tokenOfOwnerByIndex(address owner, uint256 index) view returns (uint256)',
+  'function tokenURI(uint256 tokenId) view returns (string)',
+  'function totalSupply() view returns (uint256)',
+  'function transferChild(uint256 tokenId, address to, uint256 destinationId, uint256 childIndex, address childAddress, uint256 childId, bool isPending, bytes data)',
+  'function transferFrom(address from, address to, uint256 tokenId)',
+  'function transferOwnership(address newOwner)',
+  'function updateRoyaltyRecipient(address newRoyaltyRecipient)',
+  'function walletOfOwner(address _owner) view returns (uint256[])',
+  'function withdrawRaised(address to, uint256 amount)'
+]

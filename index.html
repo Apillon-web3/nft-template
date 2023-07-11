@@ -56,6 +56,14 @@
           <button id="btnAllNFTs" onclick="loadAllNFTs();">All nfts</button>
           <button id="myNFTs" onclick="loadMyNFTs();">My nfts</button>
         </div>
+        <h2 class="text-center">Child NFTs:</h2>
+        <div class="actions">
+          <button id="childMint" onclick="childMintWrapper();">Mint</button>
+          <button id="childNestMint" onclick="childNestMintWrapper();">Nest Mint</button>
+          <button id="acceptChild" onclick="acceptChildWrapper();">Accept Child</button>
+          <button id="nestTransferFrom" onclick="nestTransferFromWrapper();">Nest Transfer From</button>
+          <button id="transferChild" onclick="transferChildWrapper();">Transfer Child</button>
+        </div>
       </div>
       <div class="grid" id="nfts"></div>
     </div>
